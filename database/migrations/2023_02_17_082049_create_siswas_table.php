@@ -14,13 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('siswas', function (Blueprint $table) {
-            $table->char('nisn');
-            $table->char('nis');
+            $table->char('nisn')->unique();
+            $table->char('nis')->unique();
             $table->string('nama');
-            $table->integer('id_kelas');
+            $table->BigInteger('id_kelas')->unsigned();
+            $table->foreign('id_kelas')->references('id_kelas')->on('kelas');
             $table->text('alamat');
             $table->string('no_telp');
-            $table->integer('id_spp');
+            $table->BigInteger('id_spp')->unsigned();
+            $table->foreign('id_spp')->references('id_spp')->on('spps');
             $table->timestamps();
         });
     }

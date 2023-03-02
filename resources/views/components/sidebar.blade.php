@@ -25,6 +25,10 @@
                         <a class="nav-link"
                             href="{{ url('data-petugas') }}">Data Petugas</a>
                     </li>
+                    <li class="{{ Request::is('data-kelas') ? 'active' : '' }}">
+                        <a class="nav-link"
+                            href="{{ url('data-kelas') }}">Data Kelas</a>
+                    </li>
                 </ul>
             </li>
         </ul>

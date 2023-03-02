@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SiswaController;
@@ -37,11 +38,31 @@ Route::get('/dashboard-general-dashboard', [HomeController::class, 'index'])->mi
 // home
 Route::get('/dashboard-general-dashboard', [HomeController::class, 'index'])->name('dashboard-general-dashboard');
 
-// Admin
+// Admin -- Siswa
 Route::get('/data-siswa', [SiswaController::class, 'index'])->name('data-siswa');
+Route::get('/tambah-data-siswa', [SiswaController::class, 'tambah'])->name('tambah-data-siswa');
+Route::get('/edit-data-siswa/{id}', [SiswaController::class, 'viewsiswa'])->name('viewsiswa');
+Route::post('/updatesiswa/{id}', [SiswaController::class, 'update'])->name('updatesiswa');
+Route::post('/insertsiswa', [SiswaController::class, 'store'])->name('insertsiswa');
+Route::get('/deletesiswa/{id}', [SiswaController::class, 'destroy'])->name('deletepetugas');
+
+
+// Petugas
 Route::get('/data-petugas', [PetugasController::class, 'index'])->name('data-petugas');
 Route::get('/tambah-data-petugas', [PetugasController::class, 'tambah'])->name('tambah-data-petugas');
+Route::get('/edit-data-petugas/{id}', [PetugasController::class, 'viewpetugas'])->name('viewpetugas');
+Route::post('/updatepetugas/{id}', [PetugasController::class,'update'])->name('updatepetugas');
 Route::post('/insertpetugas', [PetugasController::class, 'store'])->name('insertpetugas');
+Route::get('/deletepetugas/{id}', [PetugasController::class,'destroy'])->name('deletepetugas');
+
+// Kelas
+Route::get('/data-kelas', [KelasController::class, 'index'])->name('data-kelas');
+Route::get('/tambah-data-kelas', [KelasController::class, 'tambah'])->name('tambah-data-kelas');
+Route::get('/edit-data-kelas/{id}', [KelasController::class, 'viewkelas'])->name('viewkelas');
+Route::post('/updatekelas/{id}', [KelasController::class, 'update'])->name('updatekelas');
+Route::post('/insertkelas', [KelasController::class, 'store'])->name('insertkelas');
+Route::get('/deletekelas/{id}', [KelasController::class, 'destroy'])->name('deletekelas');
+
 
 
 

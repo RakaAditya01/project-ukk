@@ -1,0 +1,67 @@
+@extends('layouts.app')
+
+@section('title', 'Edit Data Petugas')
+
+@section('main')
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Edit Data Petugas</h1>
+        </div>
+        <div class="row">
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form method="POST" action="/updatepetugas/{{$data->id_petugas}}">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">nama</label>
+                                        <input type="text" name="nama" value="{{$data->nama}}" class="form-control"
+                                            id="" aria-describedby="emailHelp">
+                                        <div id="emailHelp" class="form-text"></div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">email</label>
+                                        <input type="text" name="email" value="{{$data->email}}" class="form-control"
+                                            id="" aria-describedby="emailHelp">
+                                        <div id="emailHelp" class="form-text"></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col mb-lg-2 mb-1">
+                                            <label for="exampleFormControlSelect1" class="form-label">Role</label>
+                                            <select class="form-select @error('level') is-invalid @enderror"
+                                                id="exampleFormControlSelect1" aria-label="Default select example"
+                                                name="level">
+                                                {{-- <option selected value="{{ $data->role }}">{{ $data->role }}
+                                                </option> --}}
+                                                <option value="admin">Admin</option>
+                                                <option value="petugas">Petugas</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Password</label>
+                                        <input type="text" name="password" value="{{$data->pswrd}}" class="form-control"
+                                            id="exampleInputEmail1" aria-describedby="emailHelp">
+                                        @error('password')
+                                        <div class="text-danger">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+@endsection
