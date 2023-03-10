@@ -47,11 +47,11 @@
                             novalidate="">
                             @csrf
                             <div class="form-group">
-                                <label for="username">Username</label>
-                                <input id="username"
-                                    type="username"
+                                <label for="email">Email</label>
+                                <input id="email"
+                                    type="email"
                                     class="form-control"
-                                    name="username"
+                                    name="email"
                                     tabindex="1"
                                     required
                                     autofocus>
@@ -89,10 +89,10 @@
                             </div>
 
                             <div class="form-group text-right">
-                                <a href="auth-forgot-password.html"
+                                {{-- <a href="auth-forgot-password.html"
                                     class="float-left mt-3">
                                     Forgot Password?
-                                </a>
+                                </a> --}}
                                 <button type="submit"
                                     class="btn btn-primary btn-lg btn-icon icon-right"
                                     tabindex="4">
@@ -100,9 +100,10 @@
                                 </button>
                             </div>
 
-                            <div class="mt-5 text-center">
+                            {{-- <div class="mt-5 text-center">
                                 Don't have an account? <a href="{{route("register")}}">Create new one</a>
-                            </div>
+                            </div> --}}
+                            
                         </form>
                     </div>
                 </div>

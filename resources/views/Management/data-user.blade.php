@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Data Siswa')
+@section('title', 'Data User')
 
 @push('style')
 <link rel="stylesheet" href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
@@ -12,7 +12,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Data Siswa</h1>
+            <h1>Data User</h1>
         </div>
         <div class="row">
             <div class="col-12">
@@ -21,23 +21,22 @@
                         <div class="card-body p-0">
                             <div class="bd-highlight d-flex">
                                 <div class="p-2 flex-grow-1 bd-highlight text-right">
-                                    <a href="{{route('tambah-data-siswa')}}" type="button"
+                                    <a href="{{route('tambah-data-user')}}" type="button"
                                         class="btn btn-primary mt-2 mb-4">Tambah+</a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-striped" id="table-1">
+                                    <table class="table-striped table" id="table-1">
                                         <thead>
                                             <tr>
                                                 <th scope="col">No.</th>
-                                                <th scope="col">Nisn</th>
-                                                <th scope="col">Nis</th>
+                                                <th scope="col">ID User</th>
                                                 <th scope="col">Nama</th>
-                                                <th scope="col">Kelas</th>
-                                                <th scope="col">Alamat</th>
-                                                <th scope="col">No.Telp</th>
-                                                <th scope="col">Nominal SPP</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Role</th>
+                                                <th scope="col">password</th>
+                                                <th scope="col">NISN</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
@@ -46,22 +45,23 @@
                                             $no = 1;
                                             @endphp
                                             <tr>
-                                                @foreach ($data as $no => $row)
-                                                <th scope="row">{{ $no + 1 }}</th>
-                                                <td>{{$row ->nisn}}</td>
-                                                <td>{{$row ->nis}}</td>
+                                                @foreach ($data as $no=> $row)
+                                                <th scope="row">{{$no + 1}}</th>
+                                                <td>{{$row ->id_user}}</td>
                                                 <td>{{$row ->nama}}</td>
-                                                <td>{{$row ->kelas->nama_kelas}} {{$row ->kelas->kompetensi_keahlian}}</td>
-                                                <td>{{$row ->alamat}}</td>
-                                                <td>{{$row ->no_telp}}</td>
-                                                <td>{{ 'Rp. '. $row ->spp->nominal. '.000'}}</td>
+                                                <td>{{$row ->email}}</td>
+                                                <td>{{$row ->role}}</td>
+                                                <td>{{$row ->pswrd}}</td>
+                                                <td>{{$row ->nisn}}</td>
                                                 <td>
                                                     <div class="container d-flex" style="margin: 0;padding: 0;">
-                                                        <a href="{{route('deletesiswa', ['id'=>$row->nisn])}}"
+                                                        {{-- <a href="{{route('viewpetugas',['id'=>$row->id])}}" --}}
+                                                        <a href="{{route('deleteuser', ['id'=>$row->id_user])}}"
                                                             class="btn btn-icon btn-danger m-1 ml-3 mt-1 mb-3 delete swal-confrim">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
-                                                        <a href="{{route('viewsiswa', ['id' => $row->nisn])}}"
+
+                                                        <a href="{{route('viewuser', ['id' => $row->id_user])}}"
                                                             class="btn btn-primary m-1 mr-3 mb-3 mt-1 "><i
                                                                 class="fas fa-pencil-alt "></i>
                                                         </a>

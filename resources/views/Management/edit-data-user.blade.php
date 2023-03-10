@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Data Petugas')
+@section('title', 'Edit Data User')
 
 @section('main')
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Edit Data Petugas</h1>
+            <h1>Edit Data User</h1>
         </div>
         <div class="row">
             <div class="card-body">
@@ -14,7 +14,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <form method="POST" action="/updatepetugas/{{$data->id_petugas}}">
+                                <form method="POST" action="/updateuser/{{$data->id_user}}">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">nama</label>
@@ -33,9 +33,9 @@
                                     <div class="row">
                                         <div class="col mb-lg-2 mb-1">
                                             <label for="exampleFormControlSelect1" class="form-label">Role</label>
-                                            <select class="form-select @error('level') is-invalid @enderror"
+                                            <select class="form-select @error('role') is-invalid @enderror"
                                                 id="exampleFormControlSelect1" aria-label="Default select example"
-                                                name="level">
+                                                name="role">
                                                 {{-- <option selected value="{{ $data->role }}">{{ $data->role }}
                                                 </option> --}}
                                                 <option value="admin">Admin</option>

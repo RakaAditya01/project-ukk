@@ -14,57 +14,59 @@ class PetugasController extends Controller
 {
     public function index(){
         $data = User::paginate(9999999999);
-        return view('Admin.data-petugas', compact('data'));
+        return view('Management.data-user', compact('data'));
     }
 
     public function tambah(){
         $data = User::all();
-        return view('Admin.tambah-data-petugas', compact('data'));
+        return view('Management.tambah-data-user', compact('data'));
     }
 
     public function store(request $request){
         $this->validate($request, [
-            'id_petugas' => 'required',
+            'id_user' => 'required',
             'nama' => 'required|string|max:225',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|min:8',
         ],
         [
-            'id_petugas.required' => 'ID tidak boleh kosong',
+            'id_user.required' => 'ID tidak boleh kosong',
             'nama.required' => 'Nama tidak boleh kosong',
             'email.required' => 'Email tidak boleh kosong',
             'password.required' => 'Password tidak boleh kosong',
-        ]);
+        ]);    
         User::create([
-            'id_petugas' => $request->id_petugas,
+            'id_user' => $request->id_user,
             'nama' => $request->nama,
             'email' => $request->email,
-            'level' => $request->level,
+            'role' => $request->role,
             'pswrd' => $request->password,
+            'nisn' => $request->nisn,
             'password' => Hash::make($request['password']),
-            'created_at' => now(),
+            'created_at' => now()
         ]);
-        return redirect('data-petugas');
+        
+        return redirect('data-user');
     }
 
-    public function viewpetugas($id) {
-        $data = DB::table('Users')->where('id_petugas', $id)->first();
+    public function viewpuser($id) {
+        $data = DB::table('Users')->where('id_user', $id)->first();
         $data = (object)json_decode(json_encode($data), true);
-        return view('Admin.edit-data-petugas', ['data'=>$data]);
+        return view('Management.edit-data-user', ['data'=>$data]);
     }
 
     public function update(request $request, $id){
-        $data = DB::table('Users')->where('id_petugas', $id);
+        $data = DB::table('Users')->where('id_user', $id);
         $request['password'] = Hash::make($request['password']);
         $abc = $request->except(['_token']);
         $data->update($abc);
-        return redirect('data-petugas');
+        return redirect('data-user');
     }
 
     public function destroy($id) {
-        $data = DB::table('Users')->where('id_petugas', $id);
+        $data = DB::table('Users')->where('id_user', $id);
         $data->delete();
-        return redirect()->route('data-petugas')->with('toast_succes', 'Data Berhasil DI Hapus!');
+        return redirect()->route('data-user')->with('toast_succes', 'Data Berhasil DI Hapus!');
     }
     
 }

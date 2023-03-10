@@ -25,12 +25,13 @@
             </div>
         @endif
             <form class="user needs-validation" method="POST" action="{{route('registeruser')}}">
+                @csrf
                     <div class="form-group">
-                        <label for="username">Username</label>
-                        <input id="username"
+                        <label for="nama">Nama</label>
+                        <input id="nama"
                             type="text"
                             class="form-control"
-                            name="username"
+                            name="nama"
                             autofocus>
                     </div>
 
@@ -60,12 +61,12 @@
                         </div>
                     </div>
                     <div class="form-group col-6">
-                        <label for="password2"
-                            class="d-block">Password Confirmation</label>
-                        <input id="password2"
+                        <label for="password_confirmation"
+                            class="d-block">Password </label>
+                        <input id="password_confirmation"
                             type="password"
                             class="form-control"
-                            name="password-confirm">
+                            name="password_confirmation">
                     </div>
                 </div>
                 <div class="form-group">

@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SppController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\PetugasController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\PembayaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,21 +20,20 @@ use App\Http\Controllers\RegisterController;
 |
 */
 // Login
-Route::redirect('/', '/dashboard-general-dashboard',)->middleware('guest');
-// Route::post('loginproses', [LoginController::class, 'loginproses'])->name('loginproses');
+// Route::redirect('/', '/dashboard-general-dashboard',)->middleware('guest');
+Route::redirect('/', '/auth-login2',)->middleware('guest');
+Route::post('loginproses', [LoginController::class, 'loginproses'])->name('loginproses');
 
 // Auth
 Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/auth-login2', [LoginController::class, 'login'])->name('login');
 Route::post('/loginproses', [LoginController::class, 'loginproses'])->name('loginproses');
-Route::get('/register', [RegisterController::class, 'register'])->name('register');
-Route::get('/password', [RegisterController::class])->middleware('password.confirm'); //confirm-password
-Route::post('/registeruser', [RegisterController::class, 'registeruser'])->name('registeruser');
 Route::group(['middleware' => ['auth','checkrole:admin']],function () {
     Route::get('admin', function () { return view('admin'); })->middleware('checkRole:admin');
-    Route::get('mahasiswa', function () { return view('mahasiswa'); })->middleware(['checkRole:petugas,siswa,admin']);
+    Route::get('siswa', function () { return view('siswa'); })->middleware(['checkRole:siswa']);
+    Route::get('petugas', function () { return view('petugas'); })->middleware(['checkRole:admin,siswa,petugas']);
 });
-Route::get('/dashboard-general-dashboard', [HomeController::class, 'index'])->middleware(['auth','checkRole:petugas,siswa,admin']);
+Route::get('/dashboard-general-dashboard', [HomeController::class, 'index'])->middleware(['auth','checkRole:admin,siswa,petugas']);
 
 // home
 Route::get('/dashboard-general-dashboard', [HomeController::class, 'index'])->name('dashboard-general-dashboard');
@@ -44,16 +44,15 @@ Route::get('/tambah-data-siswa', [SiswaController::class, 'tambah'])->name('tamb
 Route::get('/edit-data-siswa/{id}', [SiswaController::class, 'viewsiswa'])->name('viewsiswa');
 Route::post('/updatesiswa/{id}', [SiswaController::class, 'update'])->name('updatesiswa');
 Route::post('/insertsiswa', [SiswaController::class, 'store'])->name('insertsiswa');
-Route::get('/deletesiswa/{id}', [SiswaController::class, 'destroy'])->name('deletepetugas');
-
+Route::get('/deletesiswa/{id}', [SiswaController::class, 'destroy'])->name('deletesiswa');
 
 // Petugas
-Route::get('/data-petugas', [PetugasController::class, 'index'])->name('data-petugas');
-Route::get('/tambah-data-petugas', [PetugasController::class, 'tambah'])->name('tambah-data-petugas');
-Route::get('/edit-data-petugas/{id}', [PetugasController::class, 'viewpetugas'])->name('viewpetugas');
-Route::post('/updatepetugas/{id}', [PetugasController::class,'update'])->name('updatepetugas');
-Route::post('/insertpetugas', [PetugasController::class, 'store'])->name('insertpetugas');
-Route::get('/deletepetugas/{id}', [PetugasController::class,'destroy'])->name('deletepetugas');
+Route::get('/data-user', [PetugasController::class, 'index'])->name('data-user');
+Route::get('/tambah-data-user', [PetugasController::class, 'tambah'])->name('tambah-data-user');
+Route::get('/edit-data-user/{id}', [PetugasController::class, 'viewpuser'])->name('viewuser');
+Route::post('/updateuser/{id}', [PetugasController::class,'update'])->name('updateuser');
+Route::post('/insertuser', [PetugasController::class, 'store'])->name('insertuser');
+Route::get('/deleteuser/{id}', [PetugasController::class,'destroy'])->name('deleteuser');
 
 // Kelas
 Route::get('/data-kelas', [KelasController::class, 'index'])->name('data-kelas');
@@ -63,6 +62,21 @@ Route::post('/updatekelas/{id}', [KelasController::class, 'update'])->name('upda
 Route::post('/insertkelas', [KelasController::class, 'store'])->name('insertkelas');
 Route::get('/deletekelas/{id}', [KelasController::class, 'destroy'])->name('deletekelas');
 
+// SPP
+Route::get('/data-spp', [SppController::class, 'index'])->name('data-spp');
+Route::get('/tambah-data-spp', [SppController::class, 'tambah'])->name('tambah-data-spp');
+Route::get('/edit-data-spp/{id}', [SppController::class, 'viewspp'])->name('viewspp');
+Route::post('/updatespp/{id}', [SppController::class, 'update'])->name('updatespp');
+Route::post('/insertspp', [SppController::class, 'store'])->name('insertspp');
+Route::get('/deletespp/{id}', [SppController::class, 'destroy'])->name('deletespp');
+
+// Pembayaran
+Route::get('/data-pembayaran', [PembayaranController::class, 'index'])->name('data-pembayaran');
+Route::get('/tambah-pembayaran', [PembayaranController::class, 'tambah'])->name('tambah-pembayaran');
+Route::get('/edit-data-pembayaran/{id}', [PembayaranController::class, 'viewpembayaran'])->name('viewpembayaran');
+Route::post('/updatepembayaran/{id}', [PembayaranController::class, 'update'])->name('updatepembayaran');
+Route::post('/insertpembayaran', [PembayaranController::class, 'store'])->name('insertpembayaran');
+Route::get('/deletepembayaran/{id}', [PembayaranController::class, 'destroy'])->name('deletepembayaran');
 
 
 
@@ -80,14 +94,10 @@ Route::get('/deletekelas/{id}', [KelasController::class, 'destroy'])->name('dele
 
 
 
-
-
-
-
-// Dashboard
-Route::get('/dashboard-general-dashboard', function () {
-    return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
-});
+// // Dashboard
+// Route::get('/dashboard-general-dashboard', function () {
+//     return view('pages.dashboard-general-dashboard', ['type_menu' => 'dashboard']);
+// });
 Route::get('/dashboard-ecommerce-dashboard', function () {
     return view('pages.dashboard-ecommerce-dashboard', ['type_menu' => 'dashboard']);
 });

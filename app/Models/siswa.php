@@ -9,25 +9,27 @@ class siswa extends Model
 {
     use HasFactory;
 
+    protected $table = 'siswas';
+
     protected $fillable = [
         'nisn',
         'nis',
         'nama',
-        'nama_kelas',
+        'id_kelas',
         'alamat',
         'no_telp',
         'id_spp',
     ];
 
     public function spp() {
-        return $this->belongsTo(Spp::class, 'id_spp', 'id');
+        return $this->belongsTo(Spp::class, 'id_spp', 'id_spp');
     }
 
     public function pembayaran() {
-        return $this->hasMany(Pembayaran::class, 'id_spp');
+        return $this->hasMany(Pembayaran::class, 'id_spp', 'id_spp');
     }
 
     public function kelas() {
-        return $this->belongsTo(Kelas::class, 'nama_kelas');
+        return $this->belongsTo(Kelas::class, 'id_kelas', 'id_kelas');
     }
 }

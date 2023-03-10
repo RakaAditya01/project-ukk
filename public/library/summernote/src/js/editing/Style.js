@@ -159,3 +159,5 @@ export default class Style {
     return styleInfo;
   }
 }
+
+

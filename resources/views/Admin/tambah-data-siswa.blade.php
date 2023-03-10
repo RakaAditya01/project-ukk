@@ -84,23 +84,56 @@
                                             @enderror
                                         </div>
 
-                                        
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <label class="input-group-text">Kelas</label>
+                                        <div class="mb-3">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <label class="input-group-text">Kelas</label>
+                                                </div>
+                                                <select name="id_kelas" class="custom-select @error('id_kelas') is-invalid @enderror">
+                                                    {{  count($data) == 0 ? 'disabled' : '' }}>
+                                                    @if (count($data) == 0 )
+                                                        <option>Pilihan Tidak Ada</option>
+                                                        @else
+                                                        <option value="">Silahkan Pilih</option>
+                                                        @foreach ($data as $data)
+                                                            <option value="{{ $data->id_kelas }}">{{ $data->nama_kelas. ' --- '. $data->kompetensi_keahlian }}</option>
+                                                        @endforeach
+                                                    @endif
+                                                </select>
                                             </div>
-                                            <select name="nama_kelas" class="custom-select @error('nama_kelas') is-invalid @enderror">
-                                                {{  count($data) == 0 ? 'disabled' : '' }}>
-                                                @if (count($data) == 0 )
-                                                    <option>Pilihan Tidak Ada</option>
-                                                    @else
-                                                    <option value="">Silahkan Pilih</option>
-                                                    @foreach ($data as $data)
-                                                        <option value="{{ $data->id }}">{{ $data->nama_kelas }}</option>
-                                                    @endforeach
+                                            @error('id_kelas')
+                                            <div class="text-danger">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+                                        
+                                    <div class="mb-3">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text">
+                                                    SPP &nbsp;
+                                                </label>
+                                            </div>
+                                            <select name="nominal" class="custom-select @error('nominal') is-invalid @enderror"
+                                                {{ count($spp) == 0 ? 'disabled' : '' }}>
+                                                @if(count($spp) == 0)
+                                                <option>Pilihan tidak ada</option>
+                                                @else
+                                                <option value="">Silahkan Pilih</option>
+                                                @foreach($spp as $value)
+                                                <option value="{{ $value->id_spp }}">
+                                                    {{ 'Tahun '.$value->tahun.' - '.'Rp.'.$value->nominal. '.000' }}</option>
+                                                @endforeach
                                                 @endif
                                             </select>
                                         </div>
+                                        @error('nominal')
+                                            <div class="text-danger">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
 
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </form>

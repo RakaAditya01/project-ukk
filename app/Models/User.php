@@ -18,12 +18,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'id_petugas',
+        'id_user',
         'nama',
         'email',
         'password',
         'pswrd',
-        'level',
+        'role',
+        'nisn',
     ];
 
     //  $table->integer('id_petugas');

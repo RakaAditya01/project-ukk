@@ -14,13 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->integer('id_petugas')->unique();
+            $table->integer('id_user')->unique();
             $table->string('nama');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('pswrd');
-            $table->enum('level', ['admin','petugas','siswa'])->default('siswa');
+            $table->enum('role', ['admin','petugas','siswa']);
+            $table->integer('nisn')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Data Petugas')
+@section('title', 'Data SPP')
 
 @push('style')
 <link rel="stylesheet" href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
@@ -12,7 +12,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Data Petugas</h1>
+            <h1>Data SPP</h1>
         </div>
         <div class="row">
             <div class="col-12">
@@ -21,7 +21,7 @@
                         <div class="card-body p-0">
                             <div class="bd-highlight d-flex">
                                 <div class="p-2 flex-grow-1 bd-highlight text-right">
-                                    <a href="{{route('tambah-data-petugas')}}" type="button"
+                                    <a href="{{route('tambah-data-spp')}}" type="button"
                                         class="btn btn-primary mt-2 mb-4">Tambah+</a>
                                 </div>
                             </div>
@@ -31,11 +31,10 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">No.</th>
-                                                <th scope="col">ID Petugas</th>
-                                                <th scope="col">Nama</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Role</th>
-                                                <th scope="col">password</th>
+                                                <th scope="col">ID SPP</th>
+                                                <th scope="col">Tahun</th>
+                                                <th scope="col">Nominal</th>
+                                                <th scope="col">Tanggal Dibuat</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
@@ -46,20 +45,19 @@
                                             <tr>
                                                 @foreach ($data as $no=> $row)
                                                 <th scope="row">{{$no + 1}}</th>
-                                                <td>{{$row ->id_petugas}}</td>
-                                                <td>{{$row ->nama}}</td>
-                                                <td>{{$row ->email}}</td>
-                                                <td>{{$row ->level}}</td>
-                                                <td>{{$row ->pswrd}}</td>
+                                                <td>{{$row ->id_spp}}</td>
+                                                <td>{{$row ->tahun}}</td>
+                                                <td>{{'Rp '.$row ->nominal. '.000'}}</td>
+                                                <td>{{$row ->created_at->format('Y-m-d')}}</td>
                                                 <td>
                                                     <div class="container d-flex" style="margin: 0;padding: 0;">
                                                         {{-- <a href="{{route('viewpetugas',['id'=>$row->id])}}" --}}
-                                                        <a href="{{route('deletepetugas', ['id'=>$row->id_petugas])}}"
+                                                        <a href="{{route('deletespp', ['id'=>$row->id_spp])}}"
                                                             class="btn btn-icon btn-danger m-1 ml-3 mt-1 mb-3 delete swal-confrim">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
 
-                                                        <a href="{{route('viewpetugas', ['id' => $row->id_petugas])}}"
+                                                        <a href="{{route('viewspp', ['id' => $row->id_spp])}}"
                                                             class="btn btn-primary m-1 mr-3 mb-3 mt-1 "><i
                                                                 class="fas fa-pencil-alt "></i>
                                                         </a>

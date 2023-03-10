@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pembayarans', function (Blueprint $table) {
-            $table->integer('id_petugas');
-            $table->foreign('id_petugas')->references('id_petugas')->on('users');
+            $table->integer('id_user');
+            $table->foreign('id_user')->references('id_user')->on('users');
             $table->char('nis');
             $table->foreign('nis')->references('nis')->on('siswas');
             $table->string('spp_bulan');
+            $table->string('id_spp');
             $table->integer('jumlah_bayar');
             $table->timestamps();
         });

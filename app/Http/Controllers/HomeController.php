@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\siswa;
+use App\Models\User;
+use DB;
 use Illuminate\Http\Request;
 
-class HomeControlleer extends Controller
+class HomeController extends Controller
 {
     public function index() {
-        return view('pages.dashboard-general-dashboard');
+        $siswa = Siswa::count();
+        $user = User::count();
+        // session()->put(
+        //     'email',$user->email
+        // );
+        return view('pages.dashboard-general-dashboard', compact('siswa', 'user'));
     }
 }

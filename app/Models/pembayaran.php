@@ -9,14 +9,20 @@ class pembayaran extends Model
 {
     use HasFactory;
 
+    protected $table = 'pembayarans';
+
     protected $fillable = [
         'id_pembayaran',
         'id_petugas',
-        'nisn',
+        'nis',
+        'spp_bulan',
         'tgl_bayar',
         'bulan_dibayar',
-        'tahun_dibayar',
         'id_spp',
         'jumlah_bayar',
     ];
+
+    public function spp() {
+        return $this->belongsTo(Spp::class, 'id_spp', 'id_spp');
+    }
 }

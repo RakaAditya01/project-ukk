@@ -17,19 +17,31 @@ class LoginController extends Controller
     public function loginproses(Request $request)
     {
         $data = [
-            'ussername' => $request->input('username'),
+            'email' => $request->input('email'),
             'password' => $request->input('password'),
             // 'expired_at' => 
         ];
 
         if (Auth::Attempt($data)) {
-            $username = $request->input('username');
-            $user = User::where('username', $username)->first();
-            session()->put('name',$user->name);
+            $email = $request->input('email');
+            $user = User::where('email', $email)->first();
+            session()->put('role',$user->role);
+            // session()->put('role',$user->role);
+            // dd($user->name);
             return redirect('/dashboard-general-dashboard');    
         }else{
-            session()->flash('error', 'Username atau Password Salah');
+            session()->flash('error', 'Email atau Password Salah');
             return redirect()->back();
         }
+
+        
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        return redirect('/auth-login2')->with('logout','logout success!!');
     }
 }
