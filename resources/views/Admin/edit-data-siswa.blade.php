@@ -14,25 +14,25 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <form method="POST" action="/updatesiswa/{{$data->nisn}}">
+                                <form method="POST" action="/updatesiswa/{{$data['nisn']}}">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">NISN</label>
-                                        <input type="text" name="nisn" value="{{$data->nisn}}" class="form-control"
+                                        <input type="text" name="nisn" value="{{$data['nisn']}}" class="form-control"
                                             id="" aria-describedby="emailHelp">
                                         <div id="emailHelp" class="form-text"></div>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">NIS</label>
-                                        <input type="text" name="nis" value="{{$data->nis}}" class="form-control"
+                                        <input type="text" name="nis" value="{{$data['nis']}}" class="form-control"
                                             id="" aria-describedby="emailHelp">
                                         <div id="emailHelp" class="form-text"></div>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Nama</label>
-                                        <input type="text" name="nama" value="{{$data->nama}}" class="form-control"
+                                        <input type="text" name="nama" value="{{$data['nama']}}" class="form-control"
                                             id="" aria-describedby="emailHelp">
                                         <div id="emailHelp" class="form-text"></div>
                                     </div>
@@ -48,11 +48,11 @@
                                                     <option>Pilihan Tidak Ada</option>
                                                     @else
                                                     <option value="">Silahkan Pilih</option>
-                                                    @foreach ($data as $value)
-                                                        <option value="{{ $value->id_kelas }}"
-                                                            {{ $data->id_kelas == $value->id_kelas ? 'selected' : '' }}>{{ $value->nama_kelas }} {{ $value->kompetensi_keahlian }}
+                                                    
+                                                        <option value="{{ strval($data["id_kelas"]) }}"
+                                                            {{ strval($data["id_kelas"]) == strval($data["id_kelas"]) ? 'selected' : '' }}>{{ $data["id_kelas"] }} {{ $data['kompetensi_keahlian'] }}
                                                         </option>
-                                                    @endforeach
+
                                                 @endif
                                             </select>
                                         </div>

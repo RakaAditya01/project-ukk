@@ -6,7 +6,8 @@
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="{{ url('dashboard-general-dashboard') }}">SPP</a>
         </div>
-        @if (session('role') == 'admin')
+
+        @if (auth()->user()->role == 'admin')
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard Admin</li>
             <li class="nav-item dropdown">
@@ -37,12 +38,16 @@
                         <a class="nav-link"
                             href="{{ url('data-pembayaran') }}">Pembayaran</a>
                     </li>
+                    <li class="{{ Request::is('laporan-pdf') ? 'active' : '' }}">
+                        <a class="nav-link"
+                            href="{{ url('laporan-pdf') }}">Laporan PDF</a>
+                    </li>
                 </ul>
             </li>
         </ul>
         @endif
 
-        @if (session('role') == 'siswa')
+        @if (auth()->user()->role == 'siswa')
         {{-- {{var_dump(session('role'))}} --}}
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard Siswa</li>
@@ -54,12 +59,16 @@
                         <a class="nav-link"
                             href="{{ url('dashboard-general-dashboard') }}">General Dashboard</a>
                     </li>
+                    <li class='{{ Request::is('history-pembayaran-siswa') ? 'active' : '' }}'>
+                        <a class="nav-link"
+                            href="{{ url('history-pembayaran-siswa') }}">History Pembayaran</a>
+                    </li>
                 </ul>
             </li>
         </ul>
         @endif
 
-        {{-- @if (auth()->user()->role == 'petugas')
+        @if (auth()->user()->role == 'petugas')
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard Petugas</li>
             <li class="nav-item dropdown">
@@ -77,12 +86,16 @@
                 </ul>
             </li>
         </ul>
-        @endif  --}}
-        {{-- <div class="hide-sidebar-mini mt-4 mb-4 p-3">
-            <a href="https://getstisla.com/docs"
-                class="btn btn-primary btn-lg btn-block btn-icon-split">
-                <i class="fas fa-rocket"></i> Documentation
-            </a>
-        </div> --}}
+        @endif 
+        
+        <div class="hide-sidebar-mini mt-4 mb-4 p-3">
+            <form action="logout" method="POST">
+                @csrf
+                <button type="submit"
+                class="btn btn-danger btn-lg btn-block btn-icon-split">
+                <i class="fas fa-rocket"></i> Log Out
+            </button>    
+            </form>
+        </div>
     </aside>
 </div>

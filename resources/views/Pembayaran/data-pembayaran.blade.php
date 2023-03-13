@@ -30,8 +30,8 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">No.</th>
-                                            <th scope="col">ID Petugas</th>
-                                            <th scope="col">NIS</th>
+                                            <th scope="col">Nama Petugas</th>
+                                            <th scope="col">NISN</th>
                                             <th scope="col">SPP Bulan</th>
                                             <th scope="col">Jumlah Bayar</th>
                                             <th scope="col">Tgl.Pembayaran</th>
@@ -45,8 +45,8 @@
                                         <tr>
                                             @foreach ($data as $no => $row)
                                             <th scope="row">{{ intval($no) + 1 }}</th>
-                                            <td>{{$row->id_petugas}}</td>
-                                            <td>{{$row ->nis}}</td>
+                                            <td>{{$row->nama}}</td>
+                                            <td>{{$row ->nisn}}</td>
                                             <td>{{$row ->spp_bulan}}</td>
                                             <td>{{'Rp '.$row ->jumlah_bayar. '.000'}}</td>
                                             <td>{{$row ->created_at->format('Y-m-d')}}</td>

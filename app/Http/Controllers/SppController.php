@@ -20,17 +20,14 @@ class SppController extends Controller
 
     public function store(request $request) {
         $this->validate($request, [
-            'id_spp' => 'required|numeric',
             'tahun' => 'required|numeric',
             'nominal' => 'required|numeric'
         ],
         [
-            'id_spp.required' => 'ID SPP Tidak Boleh kosong',
             'tahun.required' => 'Tahun Tidak Boleh Kosong',
             'nominal.required' => 'Nominal Tidak Boleh Kosong',
         ]);
         spp::create([
-            'id_spp' => $request->id_spp,
             'tahun' => $request->tahun,
             'nominal' => $request->nominal,
             'created_at' => now(),

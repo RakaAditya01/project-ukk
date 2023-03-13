@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Models\siswa;
 use App\Models\kelas;
 use App\Models\spp;
@@ -17,6 +18,17 @@ class SiswaController extends Controller
         return view('Admin.data-siswa', compact('data'));
     }
 
+    public function exportPDF() {
+        $data = siswa::all();
+        $pdf = PDF::loadView('Export.pdf-siswa', ['data' => $data]);
+        return $pdf->stream('Export.pdf-siswa');
+    }
+    public function cetakpdf() {
+        $data = siswa::all();
+        $pdf = PDF::loadView('pdf1', ['data' => $data]);
+        return $pdf->stream('barang.pdf1');
+    }
+
     public function tambah() {
         $data = kelas::all();
         $spp = spp::all();
@@ -25,16 +37,6 @@ class SiswaController extends Controller
     }
 
     public function store(request $request) {
-        // dd([
-        //     'nisn' => $request->nisn,
-        //     'nis' => $request->nis,
-        //     'nama' => $request->nama,
-        //     'id_kelas' => $request->id_kelas,
-        //     'alamat' => $request->alamat,
-        //     'no_telp' => $request->no_telp,
-        //     'nominal' => $request->nominal,
-        //     'created_at' => now(),
-        // ]);
         $this->validate($request, [
             'nisn' => 'required|numeric',
             'nis' => 'required|numeric',
@@ -68,7 +70,9 @@ class SiswaController extends Controller
 
     public function viewsiswa($id) {
         $data = DB::table('siswas')->where('nisn', $id)->first();
-        $data = (object)json_decode(json_encode($data), true);
+        $data = (array)$data;
+        // $data = json_decode(json_encode($data));
+        // dd($data);
         return view('Admin.edit-data-siswa', ['data'=>$data]);
     }
 

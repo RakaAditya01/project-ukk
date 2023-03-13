@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
         name="viewport">
-    <title>Login &mdash; Stisla</title>
+    <title>Login</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet"
@@ -37,10 +37,14 @@
                             alt="logo"
                             width="80"
                             class="shadow-light rounded-circle mb-5 mt-2">
-                        <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Stisla</span>
+                        <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Pembayaran SPP</span>
                         </h4>
-                        <p class="text-muted">Before you get started, you must login or register if you don't already
-                            have an account.</p>
+                        <p class="text-muted">Before you get started, you must login.</p>
+                            @if(session('logout'))
+                            <div class="alert alert-success">
+                                {{session('logout')}}
+                            </div>
+                            @endif
                         <form method="POST"
                             action="{{route('loginproses')}}"
                             class="needs-validation"

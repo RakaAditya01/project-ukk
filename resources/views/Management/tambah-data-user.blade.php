@@ -16,20 +16,6 @@
                                 <div class="card-body" style="width: 90%">
                                     <form action="{{ route('insertuser') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
-                
-                                        <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">ID User</label>
-                                            <input type="text" name="id_user"  class="form-control
-                                            @error('id_user')
-                                                is-invalid
-                                            @enderror"aria-describedby="emailHelp" value="">
-                                            @error('id_user')
-                                                <div class="text-danger">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                            </input>
-                                        </div>
                                         
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">Nama</label>

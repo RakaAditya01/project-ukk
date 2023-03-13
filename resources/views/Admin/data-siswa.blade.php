@@ -23,6 +23,8 @@
                                 <div class="p-2 flex-grow-1 bd-highlight text-right">
                                     <a href="{{route('tambah-data-siswa')}}" type="button"
                                         class="btn btn-primary mt-2 mb-4">Tambah+</a>
+                                    <a href="{{route('pdf-siswa')}}" type="button"
+                                        class="btn btn-danger mt-2 mb-4">PDF</a>
                                 </div>
                             </div>
                             <div class="card-body">

@@ -29,23 +29,23 @@ class PembayaranController extends Controller
         // 'id_spp' => $request->nominal,
         // 'created_at' => now(),]);
         $this->validate($request, [
-            'id_user' => 'required|integer',
-            'nis' => 'required|numeric',
+            'nama' => 'required|integer',
+            'nisn' => 'required|numeric',
             'spp_bulan' => 'required|string',
             'nominal' => 'required|integer',
             'jumlah_bayar' => 'required|string',
         ],
         [
-            'id_user.required' => 'ID User Tidak Boleh Kosong',
-            'nis.required' => 'NIS Tidak Boleh Kosong',
+            'nama.required' => 'ID User Tidak Boleh Kosong',
+            'nisn.required' => 'NISn Tidak Boleh Kosong',
             'spp_bulan.required' => 'SPP Tidak Boleh Kosong',
             'nominal.required' => 'SPP Tidak Boleh Kosong',
             'jumlah_bayar.required' => 'Jumlah Tidak Boleh Kosong'
         ]);
         
         pembayaran::create([
-            'id_user' => $request->id_user,
-            'nis' => $request->nis,
+            'nama' => $request->nama,
+            'nisn' => $request->nisn,
             'spp_bulan' => $request->spp_bulan,
             'jumlah_bayar' => $request->jumlah_bayar,
             'id_spp' => $request->nominal,

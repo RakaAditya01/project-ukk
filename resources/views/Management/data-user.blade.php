@@ -23,6 +23,8 @@
                                 <div class="p-2 flex-grow-1 bd-highlight text-right">
                                     <a href="{{route('tambah-data-user')}}" type="button"
                                         class="btn btn-primary mt-2 mb-4">Tambah+</a>
+                                    <a href="{{route('pdf-user')}}" type="button"
+                                        class="btn btn-primary mt-2 mb-4">PDF</a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -35,7 +37,6 @@
                                                 <th scope="col">Nama</th>
                                                 <th scope="col">Email</th>
                                                 <th scope="col">Role</th>
-                                                <th scope="col">password</th>
                                                 <th scope="col">NISN</th>
                                                 <th scope="col">Action</th>
                                             </tr>
@@ -51,7 +52,6 @@
                                                 <td>{{$row ->nama}}</td>
                                                 <td>{{$row ->email}}</td>
                                                 <td>{{$row ->role}}</td>
-                                                <td>{{$row ->pswrd}}</td>
                                                 <td>{{$row ->nisn}}</td>
                                                 <td>
                                                     <div class="container d-flex" style="margin: 0;padding: 0;">

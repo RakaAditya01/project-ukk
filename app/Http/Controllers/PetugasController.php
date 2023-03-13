@@ -24,23 +24,21 @@ class PetugasController extends Controller
 
     public function store(request $request){
         $this->validate($request, [
-            'id_user' => 'required',
             'nama' => 'required|string|max:225',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|min:8',
         ],
         [
-            'id_user.required' => 'ID tidak boleh kosong',
             'nama.required' => 'Nama tidak boleh kosong',
             'email.required' => 'Email tidak boleh kosong',
             'password.required' => 'Password tidak boleh kosong',
         ]);    
         User::create([
-            'id_user' => $request->id_user,
+            // 'id_user' => $request->id_user,
             'nama' => $request->nama,
             'email' => $request->email,
             'role' => $request->role,
-            'pswrd' => $request->password,
+            // 'pswrd' => $request->password,
             'nisn' => $request->nisn,
             'password' => Hash::make($request['password']),
             'created_at' => now()

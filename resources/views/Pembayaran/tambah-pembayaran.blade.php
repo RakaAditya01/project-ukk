@@ -18,12 +18,12 @@
                                         @csrf
                 
                                         <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">ID Petugas</label>
-                                            <input type="text" name="id_petugas"  class="form-control
-                                            @error('id_petugas')
+                                            <label for="exampleInputEmail1" class="form-label">Nama Petugas</label>
+                                            <input type="text" name="nama"  class="form-control
+                                            @error('nama')
                                                 is-invalid
                                             @enderror"aria-describedby="emailHelp" value="">
-                                            @error('id_petugas')
+                                            @error('nama')
                                                 <div class="text-danger">
                                                     {{ $message }}
                                                 </div>
@@ -32,12 +32,12 @@
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">NIS</label>
-                                            <input type="text" name="nis"  class="form-control
-                                            @error('nis')
+                                            <label for="exampleInputEmail1" class="form-label">NISN</label>
+                                            <input type="text" name="nisn"  class="form-control
+                                            @error('nisn')
                                                 is-invalid
                                             @enderror"aria-describedby="emailHelp" value="">
-                                            @error('nis')
+                                            @error('nisn')
                                                 <div class="text-danger">
                                                     {{ $message }}
                                                 </div>

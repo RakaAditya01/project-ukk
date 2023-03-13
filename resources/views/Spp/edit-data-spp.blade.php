@@ -16,12 +16,6 @@
                             <div class="card-body">
                                 <form method="POST" action="/updatespp/{{$data->id_spp}}">
                                     @csrf
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">ID SPP</label>
-                                        <input type="text" name="id_spp" value="{{$data->id_spp}}" class="form-control"
-                                            id="" aria-describedby="emailHelp">
-                                        <div id="emailHelp" class="form-text"></div>
-                                    </div>
 
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Tahun</label>

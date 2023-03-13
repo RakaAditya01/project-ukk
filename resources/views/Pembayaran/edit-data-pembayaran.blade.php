@@ -17,15 +17,15 @@
                                 <form method="POST" action="/updatepembayaran/{{$data->id_petugas}}">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">ID Petugas</label>
-                                        <input type="text" name="id_petugas" value="{{$data->id_petugas}}" class="form-control"
+                                        <label for="exampleInputEmail1" class="form-label">Nama Petugs</label>
+                                        <input type="text" name="nama" value="{{$data->nama}}" class="form-control"
                                             id="" aria-describedby="emailHelp">
                                         <div id="emailHelp" class="form-text"></div>
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">NIS</label>
-                                        <input type="text" name="nis" value="{{$data->nis}}" class="form-control"
+                                        <label for="exampleInputEmail1" class="form-label">NISN</label>
+                                        <input type="text" name="nisn" value="{{$data->nisn}}" class="form-control"
                                             id="" aria-describedby="emailHelp">
                                         <div id="emailHelp" class="form-text"></div>
                                     </div>
